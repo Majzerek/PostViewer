@@ -1,0 +1,50 @@
+import * as React from 'react';
+import Button from '@mui/material/Button';
+
+import MenuItem from '@mui/material/MenuItem';
+import { Menu } from '@mui/material';
+import { MENU_ITEMS } from '../navRoute';
+// eslint-disable-next-line import/no-unresolved
+import ViewWeekIcon from '@mui/icons-material/ViewWeek';
+import { useLocation, useNavigate } from 'react-router-dom';
+export default function NavBarMenu() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        id="menu-button"
+        aria-controls={open ? 'nav-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        variant="text"
+        disableElevation
+        onClick={handleClick}
+      >
+        <ViewWeekIcon />
+      </Button>
+      <Menu id="nav-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
+        {MENU_ITEMS.map((item) => (
+          <MenuItem onClick={handleClose} disableRipple key={item.value}>
+            <Button
+              onClick={() => navigate(item.value)}
+              disabled={location.pathname === item.value}
+            >
+              {item.icon} {item.label}
+            </Button>
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}

@@ -1,12 +1,12 @@
 export const lightPalette = {
   primary: {
-    main: 'rgb(18, 164, 255)',
-    light: '#008000',
-    bgActive: '#00DE731A',
+    main: 'rgba(134, 171, 194, 1)',
+    light: 'rgba(195, 222, 240, 1)',
+    dark: 'rgba(88, 98, 105, 1)',
     bgPending: '#FF38381A',
   },
   secondary: {
-    main: '#2AA234',
+    main: '#a5dfaaff',
   },
   text: {
     primary: '#141414',

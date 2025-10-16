@@ -1,8 +1,8 @@
 export const darkPalette = {
   primary: {
     main: '#42BBFF',
-    bgActive: '#00DE731A',
-    bgPending: '#FF38381A',
+    light: '#86d3ffff',
+    dark: '#0a69a1ff',
   },
   secondary: {
     main: '#7329E8',
