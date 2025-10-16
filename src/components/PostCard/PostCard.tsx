@@ -6,7 +6,7 @@ type PostCardProps = {
   content: string;
   author: string;
   postId: number;
-  loading: boolean;
+  loading?: boolean;
 };
 export const PostCard = ({ headline, content, author, postId, loading }: PostCardProps) => {
   return (

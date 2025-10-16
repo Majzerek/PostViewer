@@ -12,6 +12,14 @@ const AuthServices = {
     });
     return authorRes;
   },
+  async getAuthors(signal?: AbortSignal): Promise<AuthorType[]> {
+    const authorRes = await apiMakeRequest<AuthorType[]>({
+      method: 'GET',
+      url: `/users`,
+      signal,
+    });
+    return authorRes;
+  },
 
   async getPosts(signal?: AbortSignal): Promise<Post[]> {
     const posts = await apiMakeRequest<PostDtoApi[]>({
@@ -35,7 +43,7 @@ const AuthServices = {
     const postID = postId.toString();
     const comments = await apiMakeRequest<CommentsType>({
       method: 'GET',
-      url: `/comments/${postID}`,
+      url: `/comments?postId=${postID}`,
       signal,
     });
     return comments;
