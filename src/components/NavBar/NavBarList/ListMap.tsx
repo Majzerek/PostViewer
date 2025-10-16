@@ -13,6 +13,8 @@ export const ListMap: FC<{ list: typeof MENU_ITEMS }> = ({ list }) => {
         {list.map((item) => (
           <ListItemButton
             key={item.label}
+            title={item.label}
+            aria-label={item.label}
             sx={
               item.value === location.pathname
                 ? {

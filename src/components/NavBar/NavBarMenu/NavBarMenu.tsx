@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 
 import MenuItem from '@mui/material/MenuItem';
-import { Menu } from '@mui/material';
+import { IconButton, Menu } from '@mui/material';
 import { MENU_ITEMS } from '../navRoute';
 // eslint-disable-next-line import/no-unresolved
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
@@ -36,12 +36,14 @@ export default function NavBarMenu() {
       <Menu id="nav-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
         {MENU_ITEMS.map((item) => (
           <MenuItem onClick={handleClose} disableRipple key={item.value}>
-            <Button
+            <IconButton
               onClick={() => navigate(item.value)}
               disabled={location.pathname === item.value}
+              title={item.label}
+              aria-label={item.label}
             >
               {item.icon} {item.label}
-            </Button>
+            </IconButton>
           </MenuItem>
         ))}
       </Menu>

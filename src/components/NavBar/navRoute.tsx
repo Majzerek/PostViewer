@@ -1,5 +1,6 @@
-// eslint-disable-next-line import/no-unresolved
-import { Dashboard as DashboardIcon, Favorite as FavoriteIcon } from '@mui/icons-material';
+/* eslint-disable import/no-unresolved */
+import { Dashboard as DashboardIcon } from '@mui/icons-material';
+import SimpleBadge from './Badge';
 
 export const MENU_ITEMS = [
   {
@@ -10,6 +11,6 @@ export const MENU_ITEMS = [
   {
     label: 'Favorite',
     value: '/favorite',
-    icon: <FavoriteIcon fontSize="small" />,
+    icon: <SimpleBadge />,
   },
 ];

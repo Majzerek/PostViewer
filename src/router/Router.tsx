@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Dashboard, Favorite, NotFoundPage } from '../pages';
+import { DashboardPage, Favorite, NotFoundPage } from '../pages';
 import { NavbarWrapper } from '../components/NavBar/NavBarWrapper';
 
 export const router = createBrowserRouter([
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Dashboard />,
+        element: <DashboardPage />,
       },
       {
         path: '/favorite',
