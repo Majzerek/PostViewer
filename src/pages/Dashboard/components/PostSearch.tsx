@@ -4,6 +4,7 @@ import { PostCard } from '../../../components/PostCard/PostCard';
 import { useMemo, useState } from 'react';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { InputSearch } from '../../../components/InputSearch';
+
 type PostSearchProps = {
   posts: Post[];
   authors: AuthorType[];
@@ -13,7 +14,6 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
   const [selectedAuthor, setSelectedAuthor] = useState<string>('');
   const debouncedSearch = useDebounce(searchText);
   const [limit, setLimit] = useState(10);
-  console.log(debouncedSearch.debouncValue);
 
   const filteredPosts = useMemo(() => {
     let filtered = posts;
@@ -22,11 +22,11 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
       filtered = filtered.filter((p) => p.authorId.toString() === selectedAuthor);
     }
 
-    if (debouncedSearch.debouncValue.trim()) {
+    if (debouncedSearch.trim()) {
       filtered = filtered.filter(
         (p) =>
-          p.headline.toLowerCase().includes(debouncedSearch.debouncValue) ||
-          p.content.toLowerCase().includes(debouncedSearch.debouncValue),
+          p.headline.toLowerCase().includes(debouncedSearch) ||
+          p.content.toLowerCase().includes(debouncedSearch),
       );
     }
 
