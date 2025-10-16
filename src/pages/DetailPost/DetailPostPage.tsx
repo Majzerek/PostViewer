@@ -2,19 +2,26 @@ import { Box, Button, Skeleton, Stack, Typography } from '@mui/material';
 import storage from '../../services/LocalStorageController';
 import { AuthorType, CommentsType, Post } from '../../models';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToggleFavorite } from '../../components/ToggleFavorite/ToggleFavorite';
 import { StorageKeys } from '../../types/StorageKeys';
 import { useAsyncRequest } from '../../hooks/useAsyncRequest';
 import AuthServices from '../../services/AuthServices';
 
-export const DetailPost = () => {
+const DetailPost = () => {
   const StorageList = storage.getItem<Post[]>(StorageKeys.POSTS);
   const AuthorsList = storage.getItem<AuthorType[]>(StorageKeys.AUTHORS);
   const [postList] = useState<Post[]>(StorageList ? StorageList : []);
   const [authorsList] = useState<AuthorType[]>(AuthorsList ? AuthorsList : []);
   const [detailPost, setDetailPost] = useState<Post | null>(null);
-  if (!postList) return <Box>Something went wrong</Box>;
+  if (!postList)
+    return (
+      <Box>
+        <Typography textAlign={'center'} variant="h3">
+          Something went wrong!
+        </Typography>
+      </Box>
+    );
   const { postId } = useParams<{ postId: string }>();
 
   useEffect(() => {
@@ -141,3 +148,5 @@ export const DetailPost = () => {
     </>
   );
 };
+
+export const DetailPosPage = React.memo(DetailPost);

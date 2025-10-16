@@ -1,15 +1,17 @@
-import { AuthorType, Post } from '../../../models';
-import { Stack, Box, MenuItem, Select, Typography, Button } from '@mui/material';
-import { PostCard } from '../../../components/PostCard/PostCard';
-import { useMemo, useState } from 'react';
-import { useDebounce } from '../../../hooks/useDebounce';
-import { InputSearch } from '../../../components/InputSearch';
+import { Stack, Box, Select, MenuItem, Button, Typography, CircularProgress } from '@mui/material';
+import React, { useState, useMemo } from 'react';
+import { InputSearch, PostCard } from '../../../components';
+import { useDebounce } from '../../../hooks';
+import { Post, AuthorType } from '../../../models';
 
 type PostSearchProps = {
   posts: Post[];
   authors: AuthorType[];
+  postsError: Error | null;
+  postsRefetch: () => void;
 };
-export const PostSearch = ({ posts, authors }: PostSearchProps) => {
+
+const PostSearch = ({ posts, authors, postsError, postsRefetch }: PostSearchProps) => {
   const [searchText, setSearchText] = useState('');
   const [selectedAuthor, setSelectedAuthor] = useState<string>('');
   const debouncedSearch = useDebounce(searchText);
@@ -19,7 +21,7 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
     let filtered = posts;
 
     if (selectedAuthor) {
-      filtered = filtered.filter((p) => p.authorId.toString() === selectedAuthor);
+      filtered = filtered.filter((post) => post.authorId.toString() === selectedAuthor);
     }
 
     if (debouncedSearch.trim()) {
@@ -38,6 +40,18 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
       setLimit((prev) => prev + 10);
     }
   };
+  if (postsError) {
+    return (
+      <Stack>
+        <Typography align="center" color="textSecondary" mt={2}>
+          <CircularProgress size={24} />
+        </Typography>
+        <Button variant="outlined" onClick={postsRefetch} sx={{ mx: 'auto', mb: 4 }}>
+          Reload
+        </Button>
+      </Stack>
+    );
+  }
   const PostList: Post[] = filteredPosts.slice(0, limit);
 
   return (
@@ -61,15 +75,18 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
       </Box>
 
       <Box display={'flex'} justifyContent={'center'} width={'100%'} flexWrap={'wrap'} gap={2}>
-        {PostList.map((item: Post) => (
-          <PostCard
-            key={item.postId}
-            postId={item.postId}
-            content={item.content}
-            headline={item.headline}
-            author={authors[item.authorId]?.name ?? ''}
-          />
-        ))}
+        {PostList.map((item: Post) => {
+          const author = authors.find((a) => a.id === item.authorId);
+          return (
+            <PostCard
+              key={item.postId}
+              postId={item.postId}
+              content={item.content}
+              headline={item.headline}
+              author={author?.name ?? ''}
+            />
+          );
+        })}
       </Box>
       <Stack direction="column" gap={2} alignItems="center" mt={2}>
         {limit < filteredPosts.length && (
@@ -91,3 +108,5 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
     </Stack>
   );
 };
+
+export const PostSearchComponent = React.memo(PostSearch);

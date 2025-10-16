@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { DashboardPage, DetailPost, Favorite, NotFoundPage } from '../pages';
+import { DashboardPage, DetailPosPage, FavoritePage, NotFoundPage } from '../pages';
 import { NavbarWrapper } from '../components/NavBar/NavBarWrapper';
 
 export const router = createBrowserRouter([
@@ -17,11 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/favorite',
-        element: <Favorite />,
+        element: <FavoritePage />,
       },
       {
         path: '/posts/:postId',
-        element: <DetailPost />,
+        element: <DetailPosPage />,
       },
     ],
   },

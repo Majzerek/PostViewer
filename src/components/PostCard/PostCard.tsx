@@ -1,6 +1,6 @@
-import { Button, Card, CardActions, CardContent, Skeleton, Typography } from '@mui/material';
-import { ToggleFavorite } from '../ToggleFavorite/ToggleFavorite';
+import { Card, CardContent, Typography, CardActions, Button, Skeleton, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { ToggleFavorite } from '../ToggleFavorite/ToggleFavorite';
 
 type PostCardProps = {
   headline: string;
@@ -16,36 +16,34 @@ export const PostCard = ({ headline, content, author, postId, loading }: PostCar
       <Card
         sx={{
           maxWidth: 275,
-          height: 180,
+          height: 200,
         }}
       >
-        <CardContent>
-          <Typography
-            gutterBottom
-            sx={{
-              color: 'text.secondary',
-              fontWeight: 'bold',
-              fontSize: 14,
-              textAlign: 'center',
-            }}
-          >
-            {headline.length > 25
-              ? `${headline.slice(0, 25).toUpperCase()}...`
-              : `${headline.toUpperCase()}`}
-          </Typography>
-          <Typography variant="body2">
-            {content.length > 40 ? `${content.slice(0, 40)}...` : `${content}`}
-          </Typography>
-          <Typography variant="caption" fontWeight={'bold'} mt={2}>
-            {author}
-          </Typography>
-        </CardContent>
+        <Stack direction={'column'} justifyContent={'space-between'}>
+          <CardContent>
+            <Typography
+              gutterBottom
+              sx={{
+                color: 'text.secondary',
+                fontWeight: 'bold',
+                fontSize: 14,
+                textAlign: 'center',
+              }}
+            >
+              {headline.length > 25
+                ? `${headline.slice(0, 25).toUpperCase()}...`
+                : `${headline.toUpperCase()}`}
+            </Typography>
+            <Typography variant="body2">
+              {content.length > 40 ? `${content.slice(0, 40)}...` : `${content}`}
+            </Typography>
+            <Typography variant="caption" fontWeight={'bold'} mt={2}>
+              {author}
+            </Typography>
+          </CardContent>
+        </Stack>
         <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button
-            size="small"
-            title="Zaladuj Detale"
-            onClick={() => navigation(`/posts/${postId}`)}
-          >
+          <Button size="small" title="Load Details" onClick={() => navigation(`/posts/${postId}`)}>
             Learn More
           </Button>
           <ToggleFavorite postId={postId} author={author} />
@@ -57,7 +55,7 @@ export const PostCard = ({ headline, content, author, postId, loading }: PostCar
           <Skeleton variant="text" width={275} />
           <Skeleton variant="text" width={150} />
           <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Button size="small" title="Zobacz wiecej" aria-label="Zobacz wiecej">
+            <Button size="small" title="See more" aria-label="See more details">
               Learn More
             </Button>
             <ToggleFavorite postId={postId} author={author} />

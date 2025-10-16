@@ -1,3 +1,5 @@
+import { StorageKeys } from '../types/StorageKeys';
+
 class LocalStorageController {
   setItem<T>(key: string, value: T): void {
     localStorage.setItem(key, JSON.stringify(value));
@@ -9,8 +11,8 @@ class LocalStorageController {
   deleteItem(key: string): void {
     localStorage.removeItem(key);
   }
-  clearStorage(): void {
-    localStorage.clear();
+  clearFavorite(): void {
+    localStorage.removeItem(StorageKeys.FAVORITES);
   }
 }
 
