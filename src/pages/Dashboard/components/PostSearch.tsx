@@ -1,7 +1,9 @@
 import { AuthorType, Post } from '../../../models';
-import { Stack, Box, MenuItem, Select, TextField, Typography, Button } from '@mui/material';
+import { Stack, Box, MenuItem, Select, Typography, Button } from '@mui/material';
 import { PostCard } from '../../../components/PostCard/PostCard';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useDebounce } from '../../../hooks/useDebounce';
+import { InputSearch } from '../../../components/InputSearch';
 type PostSearchProps = {
   posts: Post[];
   authors: AuthorType[];
@@ -9,18 +11,9 @@ type PostSearchProps = {
 export const PostSearch = ({ posts, authors }: PostSearchProps) => {
   const [searchText, setSearchText] = useState('');
   const [selectedAuthor, setSelectedAuthor] = useState<string>('');
-  const [debouncedSearchText, setDebouncedSearchText] = useState('');
+  const debouncedSearch = useDebounce(searchText);
   const [limit, setLimit] = useState(10);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchText(searchText);
-    }, 300);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [searchText]);
+  console.log(debouncedSearch.debouncValue);
 
   const filteredPosts = useMemo(() => {
     let filtered = posts;
@@ -29,17 +22,16 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
       filtered = filtered.filter((p) => p.authorId.toString() === selectedAuthor);
     }
 
-    if (debouncedSearchText.trim()) {
-      const lowerSearch = debouncedSearchText.toLowerCase();
+    if (debouncedSearch.debouncValue.trim()) {
       filtered = filtered.filter(
         (p) =>
-          p.headline.toLowerCase().includes(lowerSearch) ||
-          p.content.toLowerCase().includes(lowerSearch),
+          p.headline.toLowerCase().includes(debouncedSearch.debouncValue) ||
+          p.content.toLowerCase().includes(debouncedSearch.debouncValue),
       );
     }
 
     return filtered;
-  }, [posts, selectedAuthor, debouncedSearchText]);
+  }, [posts, selectedAuthor, debouncedSearch]);
 
   const handleLoadMore = () => {
     if (limit < filteredPosts.length) {
@@ -64,12 +56,7 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
           ))}
         </Select>
 
-        <TextField
-          placeholder="Szukaj po tytule lub treści..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          fullWidth
-        />
+        <InputSearch onChange={setSearchText} />
       </Box>
 
       <Box display={'flex'} justifyContent={'center'} width={'100%'} flexWrap={'wrap'} gap={2}>
