@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import storage from '../services/LocalStorageController';
+import { StorageKeys } from '../types/StorageKeys';
 
 type FavoritesContextType = {
   favorites: FavoritesType[];
@@ -13,14 +14,13 @@ type FavoritesType = {
 const FavoritesContext = createContext<FavoritesContextType | null>(null);
 
 export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
-  const LOCAL_KEY = 'FAVORITE';
-  const storedFavorites = storage.getItem<FavoritesType[]>(LOCAL_KEY);
+  const storedFavorites = storage.getItem<FavoritesType[]>(StorageKeys.FAVORITES);
   const [favorites, setFavorites] = useState<FavoritesType[]>(
     storedFavorites ? storedFavorites : [],
   );
 
   useEffect(() => {
-    storage.setItem(LOCAL_KEY, favorites);
+    storage.setItem(StorageKeys.FAVORITES, favorites);
   }, [favorites]);
 
   const toggleFavorite = (postId: number, author: string) => {

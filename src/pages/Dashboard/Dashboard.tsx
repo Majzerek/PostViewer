@@ -4,14 +4,16 @@ import { Typography } from '@mui/material';
 
 const Dashboard = () => {
   return (
-    <main>
+    <>
       <header title="Post">
         <Typography variant="h1" textAlign={'center'} mb={4}>
           Posts
         </Typography>
       </header>
-      <Posts />
-    </main>
+      <section>
+        <Posts />
+      </section>
+    </>
   );
 };
 

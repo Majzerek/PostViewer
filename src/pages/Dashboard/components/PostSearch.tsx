@@ -39,6 +39,7 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
     }
   };
   const PostList: Post[] = filteredPosts.slice(0, limit);
+
   return (
     <Stack direction={'column'} gap={2}>
       <Box display="flex" gap={2} mb={2}>
@@ -72,7 +73,12 @@ export const PostSearch = ({ posts, authors }: PostSearchProps) => {
       </Box>
       <Stack direction="column" gap={2} alignItems="center" mt={2}>
         {limit < filteredPosts.length && (
-          <Button variant="outlined" onClick={handleLoadMore}>
+          <Button
+            variant="outlined"
+            onClick={handleLoadMore}
+            aria-label="Load more Posts"
+            title="Load More"
+          >
             Load more
           </Button>
         )}

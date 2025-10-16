@@ -41,7 +41,7 @@ const AuthServices = {
   },
   async getComments(postId: number, signal?: AbortSignal) {
     const postID = postId.toString();
-    const comments = await apiMakeRequest<CommentsType>({
+    const comments = await apiMakeRequest<CommentsType[]>({
       method: 'GET',
       url: `/comments?postId=${postID}`,
       signal,
