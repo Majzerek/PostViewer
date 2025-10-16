@@ -29,7 +29,7 @@ export const ListMap: FC<{ list: typeof MENU_ITEMS }> = ({ list }) => {
                     },
                   }
             }
-            onClick={() => navigate(`/${item.value}`)}
+            onClick={() => navigate(item.value)}
           >
             <Typography
               variant="body1"
