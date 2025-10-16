@@ -1,5 +1,4 @@
 export * from './InputSearch';
-export * from './Loader/Loader';
 export * from './Main/Main';
 export * from './NavBar/NavBarWrapper';
 export * from './PostCard/PostCard';

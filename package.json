@@ -30,6 +30,7 @@
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
+    "@forge42/seo-tools": "^1.4.5",
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "7.3.4",
     "axios": "1.12.2",

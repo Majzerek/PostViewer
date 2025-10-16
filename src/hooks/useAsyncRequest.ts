@@ -7,6 +7,7 @@ type UseAbortReqResult<T> = {
   loading: boolean;
   error: Error | null;
   refetch: () => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const useAsyncRequest = <T>(
@@ -54,5 +55,5 @@ export const useAsyncRequest = <T>(
     };
   }, [...dependencies, enabled, fetchData]);
 
-  return { data, loading, error, refetch: fetchData };
+  return { data, loading, setLoading, error, refetch: fetchData };
 };

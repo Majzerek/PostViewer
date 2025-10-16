@@ -7,7 +7,7 @@ const Dashboard = () => {
     <>
       <header title="Post">
         <Typography variant="h1" textAlign={'center'} mb={4}>
-          Posts
+          Favorite Posts Viewer
         </Typography>
       </header>
       <section>

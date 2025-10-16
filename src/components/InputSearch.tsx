@@ -9,6 +9,7 @@ export const InputSearch = ({ onChange }: SearchBarProps) => {
     <TextField
       placeholder="Szukaj po tytule lub treści..."
       aria-label="Input to search for posts by content "
+      title="Enter a search for interesting posts"
       onChange={(e) => onChange(e.target.value)}
       fullWidth
     />

@@ -81,7 +81,7 @@ const DetailPost = () => {
           {loading && (
             <Stack gap={2}>
               {[...Array(3)].map((_, i) => (
-                <Box key={i}>
+                <Box key={i} data-testid="comment-skeleton">
                   <Skeleton variant="text" width="60%" height={30} />
                   <Skeleton variant="rectangular" height={60} sx={{ borderRadius: 1 }} />
                 </Box>
@@ -115,7 +115,7 @@ const DetailPost = () => {
                       boxShadow: 1,
                     }}
                   >
-                    <Typography variant="subtitle1" fontWeight="bold">
+                    <Typography variant="subtitle1" fontWeight="bold" data-testid="comment">
                       {comment.name.toUpperCase()}
                     </Typography>
                     <Typography variant="body2">{comment.body}</Typography>

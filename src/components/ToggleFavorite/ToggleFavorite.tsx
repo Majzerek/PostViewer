@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { IconButton, Tooltip } from '@mui/material';
 import { useFavorites } from '../../context/FavoriteContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -13,8 +12,12 @@ export const ToggleFavorite = ({ postId, author }: ToogleFavoriteProps) => {
   const favorite = isFavorite(postId);
 
   return (
-    <Tooltip title={favorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}>
-      <IconButton onClick={() => toggleFavorite(postId, author)} aria-label="favorite">
+    <Tooltip title={favorite ? 'Delete from favorite' : 'Add to favorite'}>
+      <IconButton
+        onClick={() => toggleFavorite(postId, author)}
+        aria-label="favorite"
+        data-testid="fav-toggle"
+      >
         {favorite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
       </IconButton>
     </Tooltip>

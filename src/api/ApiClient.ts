@@ -16,11 +16,11 @@ const apiClient = axios.create({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface MakeRequestOptions<T = any> extends AxiosRequestConfig {
+interface MakeRequestOptions<T> extends AxiosRequestConfig {
   method: HttpMethod;
   signal?: AbortSignal;
   timeoutMs?: number;
+  data?: T;
 }
 
 export const apiMakeRequest = async <T>(config: MakeRequestOptions<T>): Promise<T> => {

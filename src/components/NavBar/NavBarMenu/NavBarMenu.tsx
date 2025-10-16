@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-
 import MenuItem from '@mui/material/MenuItem';
 import { IconButton, Menu } from '@mui/material';
 import { MENU_ITEMS } from '../navRoute';
-// eslint-disable-next-line import/no-unresolved
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 export default function NavBarMenu() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +25,7 @@ export default function NavBarMenu() {
         id="menu-button"
         aria-controls={open ? 'nav-menu' : undefined}
         aria-haspopup="true"
+        aria-label="Open Menu Navigarion"
         aria-expanded={open ? 'true' : undefined}
         variant="text"
         disableElevation

@@ -18,6 +18,7 @@ export const PostCard = ({ headline, content, author, postId, loading }: PostCar
           maxWidth: 275,
           height: 200,
         }}
+        data-testid="post-card"
       >
         <Stack direction={'column'} justifyContent={'space-between'}>
           <CardContent>
@@ -43,7 +44,13 @@ export const PostCard = ({ headline, content, author, postId, loading }: PostCar
           </CardContent>
         </Stack>
         <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button size="small" title="Load Details" onClick={() => navigation(`/posts/${postId}`)}>
+          <Button
+            size="small"
+            title="Load Details"
+            onClick={() => navigation(`/posts/${postId}`)}
+            aria-label="Load Details info about Post"
+            data-testid="load-details-post"
+          >
             Learn More
           </Button>
           <ToggleFavorite postId={postId} author={author} />

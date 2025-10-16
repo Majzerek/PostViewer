@@ -2,10 +2,16 @@
 
 # Using React, Vite, Mui, Playwright# PostViewer
 
-### husky before start
+### husky before start for dev mode;
 
 - npx husky init
 - npx lint-staged
 - npm run prepare
 
-###
+### after start
+
+- npm run build
+- npm run start
+- npm run test
+  or
+- npm run test:ui

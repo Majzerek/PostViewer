@@ -27,8 +27,8 @@ const PostSearch = ({ posts, authors, postsError, postsRefetch }: PostSearchProp
     if (debouncedSearch.trim()) {
       filtered = filtered.filter(
         (p) =>
-          p.headline.toLowerCase().includes(debouncedSearch) ||
-          p.content.toLowerCase().includes(debouncedSearch),
+          p.headline.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+          p.content.toLowerCase().includes(debouncedSearch.toLowerCase()),
       );
     }
 
@@ -61,11 +61,13 @@ const PostSearch = ({ posts, authors, postsError, postsRefetch }: PostSearchProp
           value={selectedAuthor}
           onChange={(e) => setSelectedAuthor(e.target.value)}
           displayEmpty
+          aria-label="Select Author you looking for"
           sx={{ minWidth: 200 }}
+          title="Select Author"
         >
-          <MenuItem value="">Wszyscy autorzy</MenuItem>
+          <MenuItem value="">All authors</MenuItem>
           {authors.map((author) => (
-            <MenuItem key={author.id} value={(author.id - 1).toString()}>
+            <MenuItem key={author.id} value={author.id.toString()} title={author.name}>
               {author.name}
             </MenuItem>
           ))}
@@ -94,7 +96,7 @@ const PostSearch = ({ posts, authors, postsError, postsRefetch }: PostSearchProp
             variant="outlined"
             onClick={handleLoadMore}
             aria-label="Load more Posts"
-            title="Load More"
+            title="Load More Posts"
           >
             Load more
           </Button>
