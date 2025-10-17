@@ -16,7 +16,12 @@ export const NotFoundPage = () => {
       <Typography variant="h1" color="primary">
         404 - Not Found Page
       </Typography>
-      <Button variant="contained" onClick={() => navigation('/')}>
+      <Button
+        variant="contained"
+        onClick={() => navigation('/')}
+        title="Back"
+        aria-label="Back to main page"
+      >
         Back
       </Button>
     </Stack>

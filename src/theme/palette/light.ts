@@ -3,7 +3,6 @@ export const lightPalette = {
     main: 'rgba(134, 171, 194, 1)',
     light: 'rgba(195, 222, 240, 1)',
     dark: 'rgba(88, 98, 105, 1)',
-    bgPending: '#FF38381A',
   },
   secondary: {
     main: '#a5dfaaff',

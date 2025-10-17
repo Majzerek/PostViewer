@@ -69,7 +69,7 @@ const Favorite = () => {
           title="Clear All"
           onClick={() => {
             storage.clearFavorite();
-            window.location.reload();
+            location.reload();
           }}
         >
           Clear All Favorite

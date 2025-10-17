@@ -1,12 +1,12 @@
-import { Box, Button, Skeleton, Stack, Typography } from '@mui/material';
-import storage from '../../services/LocalStorageController';
-import { AuthorType, CommentsType, Post } from '../../models';
-import { Link, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import { ToggleFavorite } from '../../components/ToggleFavorite/ToggleFavorite';
-import { StorageKeys } from '../../types/StorageKeys';
-import { useAsyncRequest } from '../../hooks/useAsyncRequest';
+import { Box, Typography, Stack, Skeleton, Button } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { ToggleFavorite } from '../../components';
+import { useAsyncRequest } from '../../hooks';
+import { Post, AuthorType, CommentsType } from '../../models';
 import AuthServices from '../../services/AuthServices';
+import storage from '../../services/LocalStorageController';
+import { StorageKeys } from '../../types/StorageKeys';
 
 const DetailPost = () => {
   const StorageList = storage.getItem<Post[]>(StorageKeys.POSTS);
@@ -14,6 +14,7 @@ const DetailPost = () => {
   const [postList] = useState<Post[]>(StorageList ? StorageList : []);
   const [authorsList] = useState<AuthorType[]>(AuthorsList ? AuthorsList : []);
   const [detailPost, setDetailPost] = useState<Post | null>(null);
+
   if (!postList)
     return (
       <Box>
@@ -126,7 +127,7 @@ const DetailPost = () => {
                 ))
               ) : (
                 <Typography variant="body2" color="text.secondary">
-                  No Comments.
+                  No Comments yet.
                 </Typography>
               )}
             </Stack>

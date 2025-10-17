@@ -16,7 +16,7 @@ export const SkeletonCard = ({ skeletonValue }: { skeletonValue: number }) => {
             key={i}
             sx={{
               width: 275,
-              height: 180,
+              height: 200,
             }}
           >
             <CardContent>
