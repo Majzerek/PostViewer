@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  DependencyList,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 type AsyncFn<T> = (signal: AbortSignal) => Promise<T>;
 
@@ -7,12 +15,12 @@ type UseAbortReqResult<T> = {
   loading: boolean;
   error: Error | null;
   refetch: () => void;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useAsyncRequest = <T>(
   asyncReqFc: AsyncFn<T>,
-  dependencies: React.DependencyList = [],
+  dependencies: DependencyList = [],
   enabled = true,
 ): UseAbortReqResult<T> => {
   const [data, setData] = useState<T | null>(null);

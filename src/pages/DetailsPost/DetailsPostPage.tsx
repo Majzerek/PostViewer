@@ -4,9 +4,10 @@ import { useParams, Link } from 'react-router-dom';
 import { ToggleFavorite } from '../../components';
 import { useAsyncRequest } from '../../hooks';
 import { Post, AuthorType, CommentsType } from '../../models';
-import AuthServices from '../../services/AuthServices';
+
 import storage from '../../services/LocalStorageController';
 import { StorageKeys } from '../../types/StorageKeys';
+import ApiServices from '../../services/ApiServices';
 
 const DetailPost = () => {
   const StorageList = storage.getItem<Post[]>(StorageKeys.POSTS);
@@ -43,7 +44,7 @@ const DetailPost = () => {
   } = useAsyncRequest<CommentsType[]>(
     async (signal) => {
       if (!postId) return [];
-      const res = await AuthServices.getComments(+postId, signal);
+      const res = await ApiServices.getComments(+postId, signal);
       return res;
     },
     [postId],

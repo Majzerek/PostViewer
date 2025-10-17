@@ -2,9 +2,10 @@ import { Box, Button, Typography } from '@mui/material';
 import { useAsyncRequest } from '../../../hooks/useAsyncRequest';
 import { Post } from '../../../models';
 import { PostSearchComponent } from './PostSearch';
-import AuthServices from '../../../services/AuthServices';
+
 import { SkeletonCard } from '../../../components';
 import { useAuthors } from '../../../hooks';
+import ApiServices from '../../../services/ApiServices';
 
 export const Posts = () => {
   const {
@@ -13,7 +14,7 @@ export const Posts = () => {
     error: postsError,
     refetch,
   } = useAsyncRequest<Post[]>(async (signal) => {
-    const res = await AuthServices.getPosts(signal);
+    const res = await ApiServices.getPosts(signal);
     return res;
   }, []);
 

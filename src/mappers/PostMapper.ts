@@ -1,20 +1,20 @@
 import { Post } from '../models';
 
-export type PostDtoApi = {
+export type PostApiType = {
   id: number;
   userId: number;
   title: string;
   body: string;
 };
 
-export const mapPostDtoModel = (dto: PostDtoApi): Post => ({
+export const mapPostApiToPostModel = (dto: PostApiType): Post => ({
   postId: dto.id,
   authorId: dto.userId,
   headline: dto.title,
   content: dto.body,
 });
 
-export const mapPostsDtoModel = (dto: PostDtoApi[]): Post[] =>
+export const mapPostsApiToPostsModel = (dto: PostApiType[]): Post[] =>
   dto.map((post) => ({
     postId: post.id,
     authorId: post.userId,

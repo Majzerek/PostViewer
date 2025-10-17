@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
 import axios, { type AxiosRequestConfig } from 'axios';
 import { HttpMethod } from '../types';
 

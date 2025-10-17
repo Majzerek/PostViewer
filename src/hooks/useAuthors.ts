@@ -1,5 +1,5 @@
 import { AuthorType } from '../models';
-import AuthServices from '../services/AuthServices';
+import ApiServices from '../services/ApiServices';
 import storage from '../services/LocalStorageController';
 import { StorageKeys } from '../types/StorageKeys';
 import { useAsyncRequest } from './useAsyncRequest';
@@ -15,7 +15,7 @@ export const useAuthors = () => {
     if (storageAuthors && storageAuthors.length > 0) {
       return storageAuthors;
     }
-    const authorsList = await AuthServices.getAuthors(signal);
+    const authorsList = await ApiServices.getAuthors(signal);
     storage.setItem<AuthorType[]>(StorageKeys.AUTHORS, authorsList);
     return authorsList;
   }, []);

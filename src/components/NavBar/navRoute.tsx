@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { Dashboard as DashboardIcon } from '@mui/icons-material';
 import SimpleBadge from './Badge';
 

@@ -1,14 +1,17 @@
-##### PostViewer #####
+##### PostViewer
 
 ### a mini-app for browsing posts from JSONPlaceholder with search, author filter, post details ## and a "Favorites" list.
 
-# Using React, Vite, Mui, Playwright, Axios 
+# Using React, Vite, Mui, Playwright, Axios
+
 --- links to further information about technologies at the bottom of the page ---
 
-### before start ###
+### before start
 
 ```bash
-git clone
+git clone git@github.com:Majzerek/PostViewer.git   # SSH
+or
+git clone https://github.com/Majzerek/PostViewer.git  #HTTPS
 cd PostViewer
 
 ### testing
@@ -24,7 +27,7 @@ npm run test:ui
 npx playwright test
 ```
 
-### Building app and preview ###
+### Building app and preview
 
 ```bash
 ## if you haven't done it before......
@@ -38,18 +41,25 @@ npm run build
 npm run start
 ```
 
-### Technology: ###
+### Technology:
 
 # Vite
+
 # React & TS
+
 # Axios
+
 # ContextApi
+
 # Material UI
+
 # Playwright
+
 # on linux pc
+
 ---
 
-### 🚀 Tech Stack ###
+### 🚀 Tech Stack
 
 | Tech                                                                          | Description                                         |
 | ----------------------------------------------------------------------------- | --------------------------------------------------- |
@@ -62,4 +72,4 @@ npm run start
 
 ---
 
-### End ###
+### End

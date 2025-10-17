@@ -10,13 +10,13 @@ export default function NavBarMenu() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const [openMenu, setOpenMenu] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(openMenu);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    setOpenMenu(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorEl(null);
+    setOpenMenu(null);
   };
 
   return (
@@ -33,7 +33,7 @@ export default function NavBarMenu() {
       >
         <ViewWeekIcon />
       </Button>
-      <Menu id="nav-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
+      <Menu id="nav-menu" anchorEl={openMenu} open={open} onClose={handleClose}>
         {MENU_ITEMS.map((item) => (
           <MenuItem onClick={handleClose} disableRipple key={item.value}>
             <IconButton

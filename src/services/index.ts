@@ -1,2 +1,2 @@
 export * from './LocalStorageController';
-export * from './AuthServices';
+export * from './ApiServices';

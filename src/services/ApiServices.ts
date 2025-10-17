@@ -1,10 +1,10 @@
 import { apiMakeRequest } from '../api';
-import { mapPostDtoModel, mapPostsDtoModel, PostDtoApi } from '../mappers';
+import { mapPostApiToPostModel, mapPostsApiToPostsModel, PostApiType } from '../mappers';
 import { AuthorType, CommentsType, Post } from '../models';
 import { StorageKeys } from '../types/StorageKeys';
 import storage from './LocalStorageController';
 
-const AuthServices = {
+const ApiServices = {
   async getAuthor(id: number, signal?: AbortSignal): Promise<AuthorType> {
     const authorId = id.toString();
     const authorRes = await apiMakeRequest<AuthorType>({
@@ -25,12 +25,12 @@ const AuthServices = {
 
   async getPosts(signal?: AbortSignal): Promise<Post[]> {
     try {
-      const posts = await apiMakeRequest<PostDtoApi[]>({
+      const posts = await apiMakeRequest<PostApiType[]>({
         method: 'GET',
         url: '/posts',
         signal,
       });
-      const mapped = mapPostsDtoModel(posts);
+      const mapped = mapPostsApiToPostsModel(posts);
       storage.setItem(StorageKeys.POSTS, mapped);
       return mapped;
     } catch (err) {
@@ -42,12 +42,12 @@ const AuthServices = {
 
   async getOnePost(postId: number, signal?: AbortSignal): Promise<Post> {
     const postID = postId.toString();
-    const posts = await apiMakeRequest<PostDtoApi>({
+    const posts = await apiMakeRequest<PostApiType>({
       method: 'GET',
       url: `/posts/${postID}`,
       signal,
     });
-    return mapPostDtoModel(posts);
+    return mapPostApiToPostModel(posts);
   },
   async getComments(postId: number, signal?: AbortSignal) {
     const postID = postId.toString();
@@ -61,4 +61,4 @@ const AuthServices = {
   },
 };
 
-export default AuthServices;
+export default ApiServices;
